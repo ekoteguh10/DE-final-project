@@ -37,7 +37,7 @@ SELECT DISTINCT
       COUNT,
       NULL)) NATIVE_POPULATION
 FROM
-  `{{ params.project_id }}.{{ params.staging_dataset }}.us_cities_demo`
+  `{{ params.project_id }}.{{ params.staging_dataset }}.demographic`
 GROUP BY
   1,
   2,
