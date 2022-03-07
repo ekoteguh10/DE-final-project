@@ -31,7 +31,7 @@ default_dag_args = {
 # STEP 4: Define DAG
 # Set DAG name, description, schedule interval, etc.
 with models.DAG(
-    "data_pipeline_final_project_updated",
+    "data_pipeline_final_project_ekoteguh",
     description="DAG of final project: data pipeline",
     schedule_interval=timedelta(days=1),
     default_args=default_dag_args
