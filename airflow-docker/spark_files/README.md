@@ -44,21 +44,24 @@ df_demographic.write.mode("Overwrite").parquet("gs://final_project_ekoteguh/RAW/
 
 ## Additional information
 
-After I tried five times, similar problems occured: `Column name of df_immigration`. Here is the column name:
+After I tried five times, similar problems occured: `Column name of df_immigration` and `failed: The number of columns doesn't match.`. The first problem I think because of column name.
 
 ```csv
 City;State;Median Age;Male Population;Female Population;Total Population;Number of Veterans;Foreign-born;Average Household Size;State Code;Race;Count
 ```
 
-Some columns has space and hypen character, therefore, we need to rename the column name:
+And the second problem is because of delimiter where the default is comma (,) but the file contains semicolon (;). Therefore, we need to fix it.
 
 ```python
-df_demographic.withColumnRenamed("Median Age", "MedianAge") \
-    .withColumnRenamed("Male Population", "MalePopulation") \
-    .withColumnRenamed("Female Population", "FemalePopulation") \
-    .withColumnRenamed("Total Population", "TotalPopulation") \
-    .withColumnRenamed("Number of Veterans", "NumberofVeterans") \
-    .withColumnRenamed("Foreign-born", "ForeignBorn") \
-    .withColumnRenamed("Average Household Size", "AverageHouseholdSize") \
-    .withColumnRenamed("State Code", "StateCode")
+# The delimiter for this file (us-cities-demographics.csv) is semicolon (;)
+# We have to change the default delimiter
+df_demographic = spark.read.options(header="true", inferSchema="true", delimiter=";").csv("gs://final_project_ekoteguh/INPUT/us-cities-demographics.csv")
+df_demographic.printSchema()
+# There is a problem in Header of this df, 
+# Therefore, we need to rename the header before write it into parquet file
+# Header: City;State;Median Age;Male Population;Female Population;Total Population;Number of Veterans;Foreign-born;Average Household Size;State Code;Race;Count
+
+# Rename all column names with new column names
+demographic_new_col_names = ["City", "State", "MedianAge", "MalePopulation", "FemalePopulation", "TotalPopulation", "NumberOfVeterans", "ForeignBorn", "AverageHouseholdSize", "StateCode", "Race", "Count"]
+df_demographic = df_demographic.toDF(*demographic_new_col_names)
 ```
