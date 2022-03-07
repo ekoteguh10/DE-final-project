@@ -21,11 +21,11 @@ df_state.write.mode("Overwrite").parquet("gs://final_project_ekoteguh/RAW/usstat
 df_airport = spark.read.options(header="true", inferSchema="true").csv("gs://final_project_ekoteguh/INPUT/airport-codes_csv.csv")
 df_airport.write.mode("Overwrite").parquet("gs://final_project_ekoteguh/RAW/airportcodes.parquet")
 
-df_temp = spark.read.options(header="true", inferSchema="true").csv("gs://final_project_ekoteguh/INPUT/GlobalLandTemperaturesByCity.csv")
-df_temp.write.mode("Overwrite").parquet("gs://final_project_ekoteguh/RAW/globaltempbycity.parquet")
-
 df_immigration = spark.read.options(header="true", inferSchema="true").csv("gs://final_project_ekoteguh/INPUT/immigration_data_sample.csv")
-df_immigration.write.mode("Overwrite").parquet("gs://final_project_ekoteguh/RAW/imigration.parquet")
+df_immigration.write.mode("Overwrite").parquet("gs://final_project_ekoteguh/RAW/immigration.parquet")
 
 df_demographic = spark.read.options(header="true", inferSchema="true").csv("gs://final_project_ekoteguh/INPUT/us-cities-demographics.csv")
 df_demographic.write.mode("Overwrite").parquet("gs://final_project_ekoteguh/RAW/demographic.parquet")
+
+df_temp = spark.read.options(header="true", inferSchema="true").csv("gs://final_project_ekoteguh/INPUT/GlobalLandTemperaturesByCity.csv")
+df_temp.write.mode("Overwrite").parquet("gs://final_project_ekoteguh/RAW/globaltempbycity.parquet")
