@@ -1,11 +1,11 @@
 CREATE OR REPLACE TABLE `{{ params.dwh_dataset }}.D_WEATHER` AS
 SELECT DISTINCT
-  CAST(dt) YEAR,
+  SUBSTR(dt, 0, 4) YEAR,
   City CITY,
   Country COUNTRY,
   Latitude LATITUDE,
   Longitude LONGITUDE,
-  CAST(AverageTemperature AS FLOAT) AVG_TEMPERATURE
+  AverageTemperature AVG_TEMPERATURE
 FROM
-  `{{ params.project_id }}.{{ params.staging_dataset }}.temp_by_city`
+  `{{ params.project_id }}.{{ params.staging_dataset }}.weathers`
 WHERE Country = 'United States'
