@@ -7,16 +7,19 @@ Based on the `Project Flow Diagram`, we build data pipeline:
 - to load the parquet files to Big Query: STAGING
 - to transform data in STAGING to DW datamodels and load the result to Big Query: DW
 
-## SQL
-
-The SQL files are combination of many tables, aggregating those data into meaningful information. There are three datamodels: `D_AIRPORT`, `D_CITY_DEMO`, and `F_IMMIGRATION_DATA`.
-
 ## Airflow Variables
 
 Define the variables which will be loaded in DAG file.
 
 ```python
-project_id = ""
-dataproc_region = ""
-dataproc_zone = ""
+# example
+project_id = "de4-final-project-ekoteguh"
+dataproc_region = "us-central1"
+dataproc_zone = "us-central1-a"
 ```
+
+## Notes
+
+- If you want to send data from Cloud Storage to BigQuery using Airflow, make sure that server location is same.
+
+![Same server](same-server.png)
