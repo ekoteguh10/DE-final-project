@@ -73,7 +73,7 @@ with models.DAG(
     load_country_to_bigquery = GoogleCloudStorageToBigQueryOperator(
         task_id="load_country_to_bigquery",
         bucket="final-project-ekoteguh",
-        source_objects=["RAW/uscountry.parquet/part*"],
+        source_objects=["STAGING/uscountry.parquet/part*"],
         destination_project_dataset_table="de4-final-project-ekoteguh:FINAL_PROJECT_STAGING.countries",
         source_format="PARQUET",
         create_disposition="CREATE_IF_NEEDED",
@@ -87,7 +87,7 @@ with models.DAG(
     load_port_to_bigquery = GoogleCloudStorageToBigQueryOperator(
         task_id="load_port_to_bigquery",
         bucket="final-project-ekoteguh",
-        source_objects=["RAW/usport.parquet/part*"],
+        source_objects=["STAGING/usport.parquet/part*"],
         destination_project_dataset_table="de4-final-project-ekoteguh:FINAL_PROJECT_STAGING.ports",
         source_format="PARQUET",
         create_disposition="CREATE_IF_NEEDED",
@@ -101,7 +101,7 @@ with models.DAG(
     load_state_to_bigquery = GoogleCloudStorageToBigQueryOperator(
         task_id="load_state_to_bigquery",
         bucket="final-project-ekoteguh",
-        source_objects=["RAW/usstate.parquet/part*"],
+        source_objects=["STAGING/usstate.parquet/part*"],
         destination_project_dataset_table="de4-final-project-ekoteguh:FINAL_PROJECT_STAGING.states",
         source_format="PARQUET",
         create_disposition="CREATE_IF_NEEDED",
@@ -115,7 +115,7 @@ with models.DAG(
     load_weather_to_bigquery = GoogleCloudStorageToBigQueryOperator(
         task_id="load_weather_to_bigquery",
         bucket="final-project-ekoteguh",
-        source_objects=["RAW/globaltempbycity.parquet/part*"],
+        source_objects=["STAGING/globaltempbycity.parquet/part*"],
         destination_project_dataset_table="de4-final-project-ekoteguh:FINAL_PROJECT_STAGING.weathers",
         source_format="PARQUET",
         create_disposition="CREATE_IF_NEEDED",
@@ -129,7 +129,7 @@ with models.DAG(
     load_demographic_to_bigquery = GoogleCloudStorageToBigQueryOperator(
         task_id="load_demographic_to_bigquery",
         bucket="final-project-ekoteguh",
-        source_objects=["RAW/demographic.parquet/part*"],
+        source_objects=["STAGING/demographic.parquet/part*"],
         destination_project_dataset_table="de4-final-project-ekoteguh:FINAL_PROJECT_STAGING.demographic",
         source_format="PARQUET",
         create_disposition="CREATE_IF_NEEDED",
@@ -143,7 +143,7 @@ with models.DAG(
     load_airportcode_to_bigquery = GoogleCloudStorageToBigQueryOperator(
         task_id="load_airportcode_to_bigquery",
         bucket="final-project-ekoteguh",
-        source_objects=["RAW/airportcodes.parquet/part*"],
+        source_objects=["STAGING/airportcodes.parquet/part*"],
         destination_project_dataset_table="de4-final-project-ekoteguh:FINAL_PROJECT_STAGING.airport_codes",
         source_format="PARQUET",
         create_disposition="CREATE_IF_NEEDED",
@@ -157,7 +157,7 @@ with models.DAG(
     load_immigration_to_bigquery = GoogleCloudStorageToBigQueryOperator(
         task_id="load_immigration_to_bigquery",
         bucket="final-project-ekoteguh",
-        source_objects=["RAW/immigration.parquet/part*"],
+        source_objects=["STAGING/immigration.parquet/part*"],
         destination_project_dataset_table="de4-final-project-ekoteguh:FINAL_PROJECT_STAGING.immigration_data",
         source_format="PARQUET",
         create_disposition="CREATE_IF_NEEDED",
